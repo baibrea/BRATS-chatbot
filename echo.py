@@ -3,7 +3,7 @@ import openai
 openai.api_key = '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'
 
 
-def explain(target, context, max=150, temp=0.9, simplicity=2):
+def explain(target="Verizon mobile plans", context="Old man that needs a cell plan", max=150, temp=0.9, simplicity=2):
     if simplicity == 1:
         response = openai.Completion.create(
             model="text-davinci-002",

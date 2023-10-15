@@ -4,6 +4,8 @@ import random
 
 app = Flask(__name__)
 
+past_inputs = []
+
 hello_input = ["hello", "good day","greetings","salutations","hi there","hello there"]
 hello_output = ["Hi hi!", "Hello :D", "Hi, nice to meet you :)"]
 
@@ -30,7 +32,7 @@ def predict():
     if any(hello_input in text.lower() for hello_input in hello_input):
         message = {"answer": random.choice(hello_output)}
         return jsonify(message)
-    elif text.lower() == "hi":
+    elif text.lower() == "hi" or text.lower() == "hey":
         message = {"answer": random.choice(hello_output)}
         return jsonify(message)
     elif any(help_input in text.lower() for help_input in help_input):
@@ -46,6 +48,7 @@ def predict():
         message = {"answer": random.choice(selfname_output)}
         return jsonify(message)
     response = explain(target=text)
+    past_inputs.append(response)
     message = {"answer": response}
     return jsonify(message)
 

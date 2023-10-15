@@ -3,6 +3,7 @@ import openai
 openai.api_key = ''
 
 
+# helper method for explain()
 def createPrompt(request, simplicity):
     prompt = f"Answer the following request like a Verizon employee would: {request}."
     if simplicity == 1:
@@ -14,6 +15,7 @@ def createPrompt(request, simplicity):
     return prompt
 
 
+# Generates OpenAI responses
 def explain(target, context="", max=150, temp=1, simplicity=2):
     response = openai.Completion.create(
         model="text-davinci-002",
@@ -25,6 +27,7 @@ def explain(target, context="", max=150, temp=1, simplicity=2):
     return explanation
 
 
+# Testing only (only runs if you run this file)
 def main():
     target = input("Input a target: ")
     print(explain(target))

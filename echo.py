@@ -17,12 +17,14 @@ def createPrompt(request, simplicity):
     elif simplicity == 3:
         prompt += "Make the answer more in-depth."
     prompt += "Make the answer simple enough so anyone can understand." \
-              "Search through the Verizon website for additional accurate information if necessary."
+              "Search through the Verizon website for additional accurate information if necessary." \
+              "Don't mention that you are an employee and don't tell them to go to the website." \
+              "Answer in less than 100 words."
     return prompt
 
 
 # Generates OpenAI responses
-def explain(target, context="", max=75, temp=1, simplicity=2):
+def explain(target, context="", max=100, temp=1, simplicity=2):
     newPrompt = createPrompt(target, simplicity)
     past_messages.append({"role": "user", "content": newPrompt})
     response = openai.ChatCompletion.create(

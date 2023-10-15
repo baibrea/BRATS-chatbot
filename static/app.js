@@ -1,3 +1,5 @@
+var audio;
+
 class Chatbox {
     constructor() {
         this.args = {
@@ -20,6 +22,7 @@ class Chatbox {
         const node = chatBox.querySelector('input');
         node.addEventListener("keyup", ({key}) => {
             if (key === "Enter") {
+                playSound()
                 this.onSendButton(chatBox)
             }
         })
@@ -37,11 +40,6 @@ class Chatbox {
     }
 
     onSendButton(chatbox) {
-        function playSound() {
-            var audio = new Audio('https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3');
-            audio.play();
-        }
-        playSound();
         var textField = chatbox.querySelector('input');
         let text1 = textField.value
         if (text1 === "") {
@@ -93,3 +91,8 @@ class Chatbox {
 
 const chatbox = new Chatbox();
 chatbox.display();
+
+function playSound() {
+    audio = new Audio("https://od.lk/d/NThfMjI5NjY4OTNf/pop.mp3");
+    audio.play();
+}

@@ -1,0 +1,17 @@
+name: Run Python Script
+
+on:
+  workflow_dispatch:
+
+env:
+  openai_key: ${{ secrets.OPENAI_KEY }}
+
+jobs:
+  run-python:
+    runs-on: windows-latest
+    steps:
+      - name: Run Python Script
+        run: 
+          pip install openai
+          pip install flask
+          python app.py

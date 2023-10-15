@@ -2,24 +2,34 @@ from flask import Flask, render_template, request, jsonify
 from echo import explain
 import random
 
+# Runs flask
 app = Flask(__name__)
 
+# List that acts like a dynamic array, stores past user inputs
 past_inputs = []
 
-hello_input = ["hello", "good day","greetings","salutations","hi there","hello there"]
+# Presets for user inputs and user outputs
+
+# "Hello" user inputs / ChatiGator outputs
+hello_input = ["hello", "good day", "greetings", "salutations", "hi there", "hello there"]
 hello_output = ["Hi hi!", "Hello :D", "Hi, nice to meet you :)"]
 
-help_input=["help","help me","i need help","i want help"]
-help_output=["Please type in a topic you would like to learn more about"]
+# "Help" user inputs / ChatiGator outputs
+help_input = ["help", "help me", "i need help", "i want help"]
+help_output = ["Please type in a topic you would like to learn more about"]
 
-thanks_input=["thank you","thanks"]
-thanks_output=["No problem!","Happy to help!","Of course!"]
+# "Thanks" user inputs / ChatiGator outputs
+thanks_input = ["thank you", "thanks", "thank"]
+thanks_output = ["No problem!", "Happy to help!", "Of course!"]
 
-howareyou_input=["how are you","whats up","what's up","what is up",]
-howareyou_output=["I am doing well thank you. Is there anything I can help you with?"]
+# "How are you" user inputs / ChatiGator outputs
+howareyou_input = ["how are you", "whats up", "what's up", "what is up", "how's it going", "how is it going", "how are you doing"]
+howareyou_output = ["I am doing well thank you. Is there anything I can help you with?",
+                    "I'm doing great today. What do you need help with?"]
 
-selfname_input=['what is your name',"what are you called","what are you","what is this","who are you"]
-selfname_output=["My name is Korok. I am an AI chat assistant."]
+# "Self name" user inputs / ChatiGator outputs
+selfname_input = ["what is your name", "what are you called", "what are you", "what is this", "who are you", "whomst are you"]
+selfname_output = ["My name is ChatiGator. I am an AI chat assistant."]
 
 @app.get("/")
 def index_get():
@@ -51,6 +61,7 @@ def predict():
     past_inputs.append(response)
     message = {"answer": response}
     return jsonify(message)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

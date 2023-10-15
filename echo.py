@@ -3,7 +3,7 @@ import openai
 openai.api_key = ''
 
 
-# helper method for explain()
+# Helper method for explain()
 def createPrompt(request, simplicity):
     prompt = f"Answer the following request like a Verizon employee would: {request}."
     if simplicity == 1:

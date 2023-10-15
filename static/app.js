@@ -102,6 +102,6 @@ chatbox.display();
 
 // playSound() function
 function playSound() {
-    audio = new Audio("https://od.lk/d/NThfMjI5NjY4OTNf/pop.mp3");
+    audio = new Audio("https://od.lk/d/NThfMjI5NjY4OTRf/notifications-sound-127856-%5BAudioTrimmer.com%5D.mp3");
     audio.play();
 }

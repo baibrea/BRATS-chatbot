@@ -2,6 +2,10 @@ import openai
 
 openai.api_key = ''
 
+# List that acts like a dynamic array
+# stores past user inputs
+past_messages = []
+
 
 # Helper method for explain()
 def createPrompt(request, simplicity):
@@ -12,19 +16,23 @@ def createPrompt(request, simplicity):
         prompt += ""
     elif simplicity == 3:
         prompt += "Make the answer more in-depth."
-    prompt += "Search through the Verizon website for additional accurate information if necessary."
+    prompt += "Make the answer simple enough so anyone can understand." \
+              "Search through the Verizon website for additional accurate information if necessary."
     return prompt
 
 
 # Generates OpenAI responses
-def explain(target, context="", max=150, temp=1, simplicity=2):
-    response = openai.Completion.create(
-        model="text-davinci-002",
-        prompt=createPrompt(target, simplicity),
+def explain(target, context="", max=75, temp=1, simplicity=2):
+    newPrompt = createPrompt(target, simplicity)
+    past_messages.append({"role": "user", "content": newPrompt})
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=past_messages,
         max_tokens=max,
-        temperature=temp
+        temperature=temp,
     )
-    explanation = response.choices[0]['text'].replace("\n", " ")
+    past_messages.append({"role": "assistant", "content": response["choices"][0]["message"].content})
+    explanation = response["choices"][0]["message"].content
     return explanation
 
 

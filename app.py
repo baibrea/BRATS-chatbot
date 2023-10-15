@@ -1,13 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-from echo import explain
+from echo import explain, past_messages
 import random
 
 # Runs flask
 app = Flask(__name__)
-
-# List that acts like a dynamic array
-# stores past user inputs
-past_inputs = []
 
 
 
@@ -67,7 +63,6 @@ def predict():
         response = random.choice(goodbye_output)
     else:
         response = explain(target=text)
-    past_inputs.append(response)
     message = {"answer": response}
     return jsonify(message)
 

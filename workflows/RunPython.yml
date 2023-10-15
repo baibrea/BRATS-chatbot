@@ -1,0 +1,4 @@
+steps:
+  - name: Run Python
+    env:
+      OPENAI_KEY: ${{ secrets.OPENAI_KEY }}

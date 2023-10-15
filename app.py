@@ -10,6 +10,8 @@ app = Flask(__name__)
 past_inputs = []
 
 
+
+
 # Presets for user inputs and user outputs
 
 # "Hello" user inputs / ChatiGator outputs

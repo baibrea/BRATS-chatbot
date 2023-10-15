@@ -12,6 +12,7 @@ def createPrompt(request, simplicity):
         prompt += ""
     elif simplicity == 3:
         prompt += "Make the answer more in-depth."
+    prompt += "Search through the Verizon website for additional accurate information if necessary."
     return prompt
 
 

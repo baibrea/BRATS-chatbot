@@ -5,8 +5,10 @@ import random
 # Runs flask
 app = Flask(__name__)
 
-# List that acts like a dynamic array, stores past user inputs
+# List that acts like a dynamic array
+# stores past user inputs
 past_inputs = []
+
 
 # Presets for user inputs and user outputs
 

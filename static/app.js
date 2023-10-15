@@ -1,6 +1,10 @@
+// Audio variable
 var audio;
 
+// Chatbox Class
+// Stores Chatbox information and interactions
 class Chatbox {
+    // Constructor method
     constructor() {
         this.args = {
             openButton: document.querySelector('.chatbox__button'),
@@ -12,6 +16,7 @@ class Chatbox {
         this.messages = [];
     }
 
+    // Interacts with frontend display
     display() {
         const {openButton, chatBox, sendButton} = this.args;
 
@@ -28,10 +33,11 @@ class Chatbox {
         })
     }
 
+    // Toggle opens and closes chatbox based on button click
     toggleState(chatbox) {
         this.state = !this.state;
 
-        // show or hides the box
+        // Shows or hides the box
         if(this.state) {
             chatbox.classList.add('chatbox--active')
         } else {
@@ -39,6 +45,7 @@ class Chatbox {
         }
     }
 
+    // Sends message when send button is clicked
     onSendButton(chatbox) {
         var textField = chatbox.querySelector('input');
         let text1 = textField.value
@@ -59,7 +66,7 @@ class Chatbox {
           })
           .then(r => r.json())
           .then(r => {
-            let msg2 = { name: "Sam", message: r.answer };
+            let msg2 = { name: "ChatiGator", message: r.answer };
             this.messages.push(msg2);
             this.updateChatText(chatbox)
             textField.value = ''
@@ -71,10 +78,11 @@ class Chatbox {
           });
     }
 
+    // Update chat text
     updateChatText(chatbox) {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "Sam")
+            if (item.name === "ChatiGator")
             {
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             }
@@ -92,6 +100,7 @@ class Chatbox {
 const chatbox = new Chatbox();
 chatbox.display();
 
+// playSound() function
 function playSound() {
     audio = new Audio("https://od.lk/d/NThfMjI5NjY4OTNf/pop.mp3");
     audio.play();
